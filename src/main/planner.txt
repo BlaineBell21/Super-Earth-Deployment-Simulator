@@ -1,0 +1,23 @@
+program starts and welcomes user to GALACTIC THREAT SIMULATOR
+choose to continue to simulation or exit program
+
+ask how many players are joining (between 1-4)
+opens simulation menu where it first asks you to choose a difficulty level
+after choosing difficulty level, allows you to choose 1 of 4 classes (can not pick a class already chosen)
+allow them to choose a primary and secondary weapon;
+primary: choose from AR, shotgun, pistol, SMG, special, explosive, marksman rifle
+secondary: pistol, melee, special
+
+choose what enemy faction to spawn
+prompt if they are ready to start the invasion
+
+
+public static void simulationMenuUI(){
+        System.out.println("=== GALACTIC THREAT SIMULATOR ===");
+        System.out.println("1) Choose Difficulty Level");
+        System.out.println("4) Calculate Total Threat Level");
+        System.out.println("5) Start Invasion");
+        System.out.println("6) Save Combat Report");
+        System.out.println("7) Display Helldiver Stats");
+        System.out.println("0) Exit Simulation");
+    }

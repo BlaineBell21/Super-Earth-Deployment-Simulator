@@ -1,0 +1,64 @@
+package com.examples;
+
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
+
+public class SoundPlayer {
+
+    public static void playSound(String filePath) {
+       try {
+          File soundFile = new File(filePath);
+
+          AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
+          Clip clip = AudioSystem.getClip();
+
+          clip.open(audioStream);
+          clip.start();
+
+       } catch (UnsupportedAudioFileException e) {
+          System.out.println("Unsupported audio file format.");
+       } catch (IOException e) {
+          System.out.println("Could not read the audio file.");
+       } catch (LineUnavailableException e) {
+          System.out.println("Audio line is unavailable.");
+       }
+    }
+}
+
+Bonus challenge // TODO 11:
+// Create a new child class called Namekian.
+// Namekian should extend Fighter.
+// Give Namekian a special method called regenerate().
+// Then create a Namekian object in Main.
+Can you add an interactive element to the game... where a user can choose what to do? Like Do you want to attack or transform?
+
+Create this menu
+=== DBZ Battle Arena ===
+
+1) Create Saiyan
+2) Create Namekian
+3) View Team
+4) Calculate Total Team Power
+5) Start Battle
+6) Save Battle Report
+0) Exit
+6.. Save the results of the game to a transactions.txt file
+
+team.add(goku);
+Enter Saiyan name:
+
+
+Enter power level:
+
+
+Enter health:
+
+
+X has been added to your team!
+
+Thread.sleep(3000);
+
+https://tuna.voicemod.net/sound/27c91c38-ce01-4cb6-a179-f7a9b8385198
+https://www.freeconvert.com/mp3-to-wav
+https://www.cutyt.com/yt-wav
