@@ -4,23 +4,20 @@ package com.pluralsight.ui;
 import com.pluralsight.utils.UserInput;
 
 public class MainMenu {
-    public void menuUI(){
-        System.out.println("Welcome to the DBZ Battle Arena");
-    }
+
     public static void mainMenuUI(){
         System.out.println("=== HELLDIVER DEPLOYMENT SIMULATOR v1.0 ===\n" +
-                "\n" +
-                "Status: RECRUIT ACTIVATED\n" +
-                "\n" +
-                "Training Record: NOT FOUND\n" +
-                "Survival Probability: \"Optimistic\"\n" +
-                "Previous Combat Experience: IRRELEVANT\n" +
-                "\n" +
-                "Reminder:\n" +
-                "You are replaceable.\n" +
-                "You are expendable.\n" +
-                "You are DEMOCRACY’S BEST OPTION.");
-
+        "\n" +
+        "Status: RECRUIT ACTIVATED\n" +
+        "\n" +
+        "Training Record: NOT FOUND\n" +
+        "Survival Probability: \"Optimistic\"\n" +
+        "Previous Combat Experience: IRRELEVANT\n" +
+        "\n" +
+        "Reminder:\n" +
+        "You are replaceable.\n" +
+        "You are expendable.\n" +
+        "You are DEMOCRACY’S BEST OPTION.");
     }
     public static void mainMenuOptions(){
 

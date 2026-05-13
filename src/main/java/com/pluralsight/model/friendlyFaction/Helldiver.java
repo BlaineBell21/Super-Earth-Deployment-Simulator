@@ -1,11 +1,13 @@
 package com.pluralsight.model.friendlyFaction;
 
+import com.pluralsight.model.Weapon;
+
 public class Helldiver {
     //identity based stats
     private int hellDiverNumber;
     private String helldiverName;
     private String callsign;
-    private String primaryWeapon;
+    private Weapon primaryWeapon;
     private int specialty;
 
     //combat stats
@@ -19,7 +21,7 @@ public class Helldiver {
     public Helldiver(int hellDiverNumber,
                      String helldiverName,
                      String callsign,
-                     String primaryWeapon,
+                     Weapon primaryWeapon,
                      int specialty,
                      int combatRating,
                      int health,
@@ -74,11 +76,11 @@ public class Helldiver {
     }
 
 
-    public String getPrimaryWeapon() {
+    public Weapon getPrimaryWeapon() {
         return primaryWeapon;
     }
 
-    public void setPrimaryWeapon(String primaryWeapon) {
+    public void setPrimaryWeapon(Weapon primaryWeapon) {
         this.primaryWeapon = primaryWeapon;
     }
 
@@ -124,6 +126,19 @@ public class Helldiver {
 
     public int getArmorRating() {
         return armorRating;
+    }
+
+    public String getStats(){
+        return
+                getHelldiverName()+"\n"+
+                "call sign\n" +
+                "Primary Weapon: " + primaryWeapon.getWeaponName() + "\n" +
+                "Helldiver Specialty" + specialty + "\n" +
+                "Combat Rating: " + 100 + "\n" +
+                "Health: " + 100+ "\n" +
+                "Stamina: " + 100+ "\n" +
+                "Armor Rating: " + 100+ "\n" +
+                true;
     }
 
     public void setArmorRating(int armorRating) {
