@@ -1,46 +1,43 @@
 package com.pluralsight.ui;
 
-import com.pluralsight.model.Weapon;
-import com.pluralsight.model.friendlyFaction.Helldiver;
-import com.pluralsight.utils.InputReader;
+import com.pluralsight.model.players.*;
+import com.pluralsight.model.weapons.Weapon;
 import com.pluralsight.utils.UserInput;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.pluralsight.service.WeaponService.weaponChoices;
+import static com.pluralsight.utils.helpers.SelectionConfirmation.confirmSelection;
+
 public class CharacterCreatorMenu {
-    private static ArrayList<Helldiver> players = new ArrayList<>();
-    public static void helldiverCreator(InputReader weapons) throws IOException {
+    private static final ArrayList<Helldiver> players = new ArrayList<>();
+
+    public static void helldiverCreator(ArrayList<Weapon> weapons) throws IOException {
         amountOfPlayersUI();
         int amountOfPlayers = collectNumber();
 
         while (amountOfPlayers > 0) {
             System.out.println("Enter in your name: ");
             String playerName = UserInput.userStringInput();
-
             System.out.println("Choose your call signs");
-
 
              Weapon primaryWeapon = weaponChoices(weapons);
 
-//            int specialty = collectNumber();
-            int specialty = 1;
             amountOfPlayers -= 1;
 
-            Helldiver newHelldiver = new Helldiver(0,
-                    playerName,
-                    "",
-                    primaryWeapon,
-                    specialty,
-                    100,
-                    100,
-                    100,
-                    100,
-                    true);
-            System.out.println(newHelldiver.getStats());
-            players.add(newHelldiver);
+            chooseYourSpecialtyOptions(playerName, primaryWeapon);
+
         }
         System.out.println("finished character creation");
+    }
+
+    public static void chooseYourSpecialtyUI(){
+        System.out.println("Enter in the number of one of the 4 specialties: ");
+        System.out.println("1) Heavy Weapons Specialist");
+        System.out.println("2) Recon Operative");
+        System.out.println("3) Shock Trooper");
+        System.out.println("4) Support Specialist");
     }
 
     public static void amountOfPlayersUI(){
@@ -48,28 +45,150 @@ public class CharacterCreatorMenu {
         System.out.println("Enter a number between 1 and 4: ");
     }
 
-    public static int collectAmountOfPlayers(){
-        amountOfPlayersUI();
-        while (true){
-
-            int amountOfPlayers = UserInput.userIntInput();
-
-            if (amountOfPlayers > 0 && amountOfPlayers <= 4){
-                System.out.println("collected " + amountOfPlayers);
-                return amountOfPlayers;
-
+    public static boolean roleAlreadyChosen(Specialty specialty){
+        for (Helldiver player : players){
+            if(player.getSpecialty() == specialty){
+                System.out.println("You must choose a role that isn't already chosen.");
+                return false;
             }
-            System.out.println("Amount of new recruits must be between 1 and 4.");
-            System.out.println("Try again: ");
+        }
+        return true;
+    }
+
+    public static void playerCreator(Specialty role,String playerName, Weapon primaryWeapon){
+        switch (role){
+            case HEAVY_WEAPONS_SPECIALIST -> {
+            HeavyWeaponSpecialist heavyWeapons = new HeavyWeaponSpecialist(
+                    playerName,
+                    "",
+                    primaryWeapon,
+                    Specialty.HEAVY_WEAPONS_SPECIALIST,
+                    Specialty.HEAVY_WEAPONS_SPECIALIST.getCombatBonus(),
+                    100,
+                    100,
+                    100,
+                    true);
+            System.out.println(heavyWeapons.getStats());
+            players.add(heavyWeapons);
+            }
+            case RECON_OPERATIVE -> {
+                ReconOperative reconOp = new ReconOperative(
+                        playerName,
+                        "",
+                        primaryWeapon,
+                        Specialty.RECON_OPERATIVE,
+                        Specialty.RECON_OPERATIVE.getCombatBonus(),
+                        100,
+                        100,
+                        100,
+                        true);
+                System.out.println(reconOp.getStats());
+                players.add(reconOp);
+            }
+            case SHOCK_TROOPER -> {
+                ShockTrooper shockTrooper = new ShockTrooper(
+                        playerName,
+                        "",
+                        primaryWeapon,
+                        Specialty.SHOCK_TROOPER,
+                        Specialty.SHOCK_TROOPER.getCombatBonus(),
+                        100,
+                        100,
+                        100,
+                        true);
+                System.out.println(shockTrooper.getStats());
+                players.add(shockTrooper);
+            }
+            case SUPPORT_SPECIALIST -> {
+                SupportSpecialist supportSpecialist = new SupportSpecialist(
+                        playerName,
+                        "",
+                        primaryWeapon,
+                        Specialty.SUPPORT_SPECIALIST,
+                        Specialty.SUPPORT_SPECIALIST.getCombatBonus(),
+                        100,
+                        100,
+                        100,
+                        true);
+                System.out.println(supportSpecialist.getStats());
+                players.add(supportSpecialist);
+            }
         }
     }
-    public static void chooseYourSpecialtyUI(){
-        System.out.println("Choose one of 4 specialties: ");
-        System.out.println("1) Heavy Weapons Specialist");
-        System.out.println("2) Recon Operative");
-        System.out.println("3) Shock Trooper");
-        System.out.println("4) Support Specialist");
+
+    public static boolean roleValidation(Specialty specialty){
+        return !roleAlreadyChosen(specialty);
     }
+
+    public static void chooseYourSpecialtyOptions(String playerName, Weapon primaryWeapon){
+
+        boolean isDoneChoosing = false;
+        System.out.println("made it to specialty");
+        while(!isDoneChoosing) {
+
+        System.out.println("made it to player loop");
+        chooseYourSpecialtyUI();
+        Specialty specialty;
+        String option = UserInput.userStringInput();
+        switch (option) {
+            case "1":
+                 specialty = Specialty.HEAVY_WEAPONS_SPECIALIST;
+
+                if(!roleValidation(specialty)){
+                    System.out.println("made it to role validation");
+                    if(confirmSelection()) {
+                        playerCreator(specialty, playerName, primaryWeapon);
+                        isDoneChoosing = true;
+                    } else {
+                        break;
+                    }
+                }
+                break;
+            case "2":
+                 specialty = Specialty.RECON_OPERATIVE;
+
+                if(!roleValidation(specialty)){
+                    System.out.println("made it to role validation");
+                    if(confirmSelection()) {
+                        playerCreator(specialty, playerName, primaryWeapon);
+                        isDoneChoosing = true;
+                    } else {
+                        break;
+                    }
+                }
+                break;
+            case "3":
+                specialty = Specialty.SHOCK_TROOPER;
+
+                if(!roleValidation(specialty)){
+                    System.out.println("made it to role validation");
+                    if(confirmSelection()) {
+                        playerCreator(specialty, playerName, primaryWeapon);
+                        isDoneChoosing = true;
+                    } else {
+                        break;
+                    }
+                }
+                break;
+            case "4":
+                specialty = Specialty.SUPPORT_SPECIALIST;
+
+                if(!roleValidation(specialty)){
+                    System.out.println("made it to role validation");
+                    if(confirmSelection()) {
+                        playerCreator(specialty, playerName, primaryWeapon);
+                        isDoneChoosing = true;
+                    } else {
+                        break;
+                    }
+                }
+                break;
+            default:
+                System.out.println("Incorrect input. Try Again. specialty menu");
+            }
+        }
+    }
+
     public static int collectNumber(){
         while (true){
 
@@ -78,96 +197,10 @@ public class CharacterCreatorMenu {
             if (playerSpecialty > 0 && playerSpecialty <= 4){
                 System.out.println("collected " + playerSpecialty);
                 return playerSpecialty;
-
             }
             System.out.println("Must be between 1 and 4.");
             System.out.println("Try again: ");
         }
-    }
-
-
-    public static void weaponChoiceUI(){
-        System.out.println("Choose a primary: ");
-        System.out.println("1) Assault Rifle");
-        System.out.println("2) Marksman Rifle");
-        System.out.println("3) Shotgun");
-        System.out.println("4) Submachine Gun");
-        System.out.println("5) Explosive");
-        System.out.println("6) Pistol");
-        System.out.println("7) Melee");
-        System.out.println("8) Special");
-    }
-
-    public static Weapon weaponChoices(InputReader weapons) throws IOException {
-
-        while (true){
-            weaponChoiceUI();
-            String weaponType = "";
-            int option = UserInput.userIntInput();
-            switch(option){
-                case 1:
-                     weaponType = "Assault Rifle";
-                    System.out.println("Showing Assault Rifle Inventory");
-                   return weaponSorter(weaponType);
-                case 2:
-                     weaponType = "Marksman Rifle";
-                    System.out.println("Showing Marksman Rifle Inventory");
-                    weaponSorter(weaponType);
-                    return weaponSorter(weaponType);
-                case 3:
-                     weaponType = "Shotgun";
-                    System.out.println("Showing Shotgun Inventory");
-                    return weaponSorter(weaponType);
-                case 4:
-                     weaponType = "Submachine Gun";
-                    System.out.println("Showing Submachine Gun Inventory");
-                    return weaponSorter(weaponType);
-                case 5:
-                    weaponType = "Explosive";
-                    System.out.println("Showing Explosive Inventory");
-                    return weaponSorter(weaponType);
-                case 6:
-                   weaponType = "Pistol";
-                    System.out.println("Showing Pistol Inventory");
-                    return weaponSorter(weaponType);
-                case 7:
-                    weaponType = "Melee";
-                    System.out.println("Showing Melee Inventory");
-                    return weaponSorter(weaponType);
-                case 8:
-                    weaponType = "Special";
-                    System.out.println("Showing Special Inventory");
-                    return weaponSorter(weaponType);
-                default:
-                    System.out.println("Incorrect Input. Try Again.");
-            }
-        }
-    }
-    public static Weapon weaponSorter(String weaponType) throws IOException {
-
-        ArrayList<Weapon> weapons = InputReader.weaponReader();
-        ArrayList<Weapon> chosenType = new ArrayList<>();
-
-        for(Weapon weapon : weapons){
-            if(weapon.getWeaponType().equals(weaponType)){
-                chosenType.add(weapon);
-                System.out.println(weapon.getWeaponStats());
-            }
-        }
-        boolean isDoneChoosing = false;
-
-        while (!isDoneChoosing) {
-            String chosenWeapon = UserInput.userStringInput();
-            String formattedChosenWeapon = chosenWeapon.replace(" ", "").toLowerCase();
-
-            for (Weapon weapon : chosenType) {
-                if (weapon.getWeaponName().toLowerCase().equals(formattedChosenWeapon) || weapon.getWeaponName().toLowerCase().contains(formattedChosenWeapon)) {
-
-                    return weapon;
-                }
-            }
-        }
-        return null;
     }
 
 }

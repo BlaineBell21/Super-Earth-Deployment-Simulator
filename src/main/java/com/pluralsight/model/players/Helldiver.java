@@ -1,14 +1,13 @@
-package com.pluralsight.model.friendlyFaction;
+package com.pluralsight.model.players;
 
-import com.pluralsight.model.Weapon;
+import com.pluralsight.model.weapons.Weapon;
 
-public class Helldiver {
+public abstract class Helldiver {
     //identity based stats
-    private int hellDiverNumber;
     private String helldiverName;
     private String callsign;
     private Weapon primaryWeapon;
-    private int specialty;
+    private Specialty specialty;
 
     //combat stats
     private int combatRating;
@@ -18,17 +17,15 @@ public class Helldiver {
     //current status
     private boolean isAlive;
 
-    public Helldiver(int hellDiverNumber,
-                     String helldiverName,
+    public Helldiver(String helldiverName,
                      String callsign,
                      Weapon primaryWeapon,
-                     int specialty,
+                     Specialty specialty,
                      int combatRating,
                      int health,
                      int stamina,
                      int armorRating,
-                     boolean alive) {
-        this.hellDiverNumber = hellDiverNumber;
+                     boolean isAlive) {
         this.helldiverName = helldiverName;
         this.callsign = callsign;
         this.primaryWeapon = primaryWeapon;
@@ -37,7 +34,7 @@ public class Helldiver {
         this.health = health;
         this.stamina = stamina;
         this.armorRating = armorRating;
-        this.isAlive = alive;
+        this.isAlive = isAlive;
     }
 
     public void attack() {
@@ -52,19 +49,6 @@ public class Helldiver {
 
     public void userStim(){
 
-    }
-
-    public void displayStats(){
-        System.out.println("\n=== HELLDIVER STATUS ===");
-
-        System.out.println("Callsign: " + callsign);
-        System.out.println("Primary Weapon: " + primaryWeapon);
-        System.out.println("Combat Rating: " + combatRating);
-        System.out.println("Health: " + health);
-        System.out.println("Stamina: " + stamina);
-        System.out.println("Armor Rating: " + armorRating);
-
-        System.out.println("Life status: " + isAlive);
     }
 
     public String getCallsign() {
@@ -88,10 +72,6 @@ public class Helldiver {
         return combatRating;
     }
 
-    public void setCombatRating(int combatRating) {
-        this.combatRating = combatRating;
-    }
-
     public int getHealth() {
         return health;
     }
@@ -104,46 +84,22 @@ public class Helldiver {
         return stamina;
     }
 
-    public void setStamina(int stamina) {
-        this.stamina = stamina;
-    }
 
     public String getHelldiverName() {
         return helldiverName;
     }
 
-    public void setHelldiverName(String helldiverName) {
-        this.helldiverName = helldiverName;
-    }
-
-    public int getSpecialty() {
+    public Specialty getSpecialty() {
         return specialty;
     }
 
-    public void setSpecialty(int specialty) {
-        this.specialty = specialty;
-    }
 
     public int getArmorRating() {
         return armorRating;
     }
 
-    public String getStats(){
-        return
-                getHelldiverName()+"\n"+
-                "call sign\n" +
-                "Primary Weapon: " + primaryWeapon.getWeaponName() + "\n" +
-                "Helldiver Specialty" + specialty + "\n" +
-                "Combat Rating: " + 100 + "\n" +
-                "Health: " + 100+ "\n" +
-                "Stamina: " + 100+ "\n" +
-                "Armor Rating: " + 100+ "\n" +
-                true;
-    }
+    public abstract String getStats();
 
-    public void setArmorRating(int armorRating) {
-        this.armorRating = armorRating;
-    }
 
     public boolean isAlive() {
         return isAlive;

@@ -1,13 +1,13 @@
-package com.pluralsight.model;
+package com.pluralsight.model.weapons;
 
 public class Weapon {
     private int damage;
     private String penetrationLevel;
     private String weaponName;
-    private String weaponType;
+    private WeaponType weaponType;;
     private double recoil;
 
-    public Weapon(int damage, String penetrationLevel, String weaponName, String weaponType, double recoil) {
+    public Weapon(int damage, String penetrationLevel, String weaponName, WeaponType weaponType, double recoil) {
         this.damage = damage;
         this.penetrationLevel = penetrationLevel;
         this.weaponName = weaponName;
@@ -39,11 +39,11 @@ public class Weapon {
         this.weaponName = weaponName;
     }
 
-    public String getWeaponType() {
+    public WeaponType getWeaponType() {
         return weaponType;
     }
 
-    public void setWeaponType(String weaponType) {
+    public void setWeaponType(WeaponType weaponType) {
         this.weaponType = weaponType;
     }
 

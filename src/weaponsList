@@ -1,22 +1,22 @@
 Weapon Name|Weapon Type|damage|Penetration Level|recoil
-AR-23 Liberator|Assault Rifle|70|Light|15
-AR-23P Liberator Penetrator|Assault Rifle|80|Medium|22
-R-63 Diligence|Marksman Rifle|125|Light|28
-R-63CS Diligence Counter Sniper|Marksman Rifle|140|Medium|35
-SMG-37 Defender|Submachine Gun|75|Light|10
-MP-98 Knight|Submachine Gun|65|Light|18
-SG-225SP Breaker Spray&Pray|Shotgun|240|Light|40
-SG-8 Punisher|Shotgun|405|Medium|55
-R-36 Eruptor|Explosive|420|Explosive|75
-CB-9 Exploding Crossbow|Explosive|350|Explosive|48
-LAS-16 Sickle|Energy-Based|65|Light|5
-PLAS-1 Scorcher|Energy-Based|120|Medium|12
-JAR-5 Dominator|Special|200|Medium|60
-Flam-66 Torcher|Special|150|Heavy|0.75
-P-19 Redeemer|Pistol|110|Light|14
-P-4 Senator|Pistol|200|Medium|32
-P-11 Stim Pistol|Pistol|0|Medical|23
-CQC-2 Saber|Melee|250|Medium|5
-CQC-19 Stun Lance|Melee|180|Electrical|8
-GP-31 Grenade Pistol|Special|400|Explosive|40
-LAS-7 Dagger|Special|90|Energy|3
+AR-23 Liberator|ASSAULT_RIFLE|70|Light|15
+AR-23P Liberator Penetrator|ASSAULT_RIFLE|80|Medium|22
+R-63 Diligence|MARKSMAN_RIFLE|125|Light|28
+R-63CS Diligence Counter Sniper|MARKSMAN_RIFLE|140|Medium|35
+SMG-37 Defender|SUBMACHINE_GUN|75|Light|10
+MP-98 Knight|SUBMACHINE_GUN|65|Light|18
+SG-225SP Breaker Spray&Pray|SHOTGUN|240|Light|40
+SG-8 Punisher|SHOTGUN|405|Medium|55
+R-36 Eruptor|EXPLOSIVE|420|Explosive|75
+CB-9 Exploding Crossbow|EXPLOSIVE|350|Explosive|48
+LAS-16 Sickle|ENERGY_BASED|65|Light|5
+PLAS-1 Scorcher|ENERGY_BASED|120|Medium|12
+JAR-5 Dominator|SPECIAL|200|Medium|60
+Flam-66 Torcher|SPECIAL|150|Heavy|0.75
+P-19 Redeemer|PISTOL|110|Light|14
+P-4 Senator|PISTOL|200|Medium|32
+P-11 Stim Pistol|PISTOL|0|Medical|23
+CQC-2 Saber|MELEE|250|Medium|5
+CQC-19 Stun Lance|MELEE|180|Electrical|8
+GP-31 Grenade Pistol|SPECIAL|400|Explosive|40
+LAS-7 Dagger|SPECIAL|90|Energy|3
